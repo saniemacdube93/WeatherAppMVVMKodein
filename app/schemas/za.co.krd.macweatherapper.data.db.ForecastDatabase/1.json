@@ -1,0 +1,82 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "ec1bd6defa33491fdc88f79759bac516",
+    "entities": [
+      {
+        "tableName": "harare_current_weather",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `temp` REAL NOT NULL, `feelsLike` REAL NOT NULL, `tempMin` REAL NOT NULL, `tempMax` REAL NOT NULL, `pressure` INTEGER NOT NULL, `humidity` INTEGER NOT NULL, `seaLevel` INTEGER NOT NULL, `grndLevel` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temp",
+            "columnName": "temp",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "feelsLike",
+            "columnName": "feelsLike",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tempMin",
+            "columnName": "tempMin",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tempMax",
+            "columnName": "tempMax",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pressure",
+            "columnName": "pressure",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "humidity",
+            "columnName": "humidity",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "seaLevel",
+            "columnName": "seaLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "grndLevel",
+            "columnName": "grndLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ec1bd6defa33491fdc88f79759bac516')"
+    ]
+  }
+}

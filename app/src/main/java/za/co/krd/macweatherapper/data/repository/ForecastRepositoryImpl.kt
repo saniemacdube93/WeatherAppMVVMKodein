@@ -49,7 +49,7 @@ class ForecastRepositoryImpl(
 
 
     private suspend fun fetchCurrentWeather(){
-        weatherNetworkDataSource.fetchCurrentWeather("harare")
+        weatherNetworkDataSource.fetchCurrentWeather("harare" , "metric")
     }
 
 

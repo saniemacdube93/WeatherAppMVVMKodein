@@ -19,6 +19,7 @@ interface OpenWeatherService {
     @GET("weather")
     fun  getCurrentWeather (
         @Query("q") city: String,
+        @Query("units") unit: String,
     ): Deferred<CurrentWeatherResponse>
 
 

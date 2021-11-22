@@ -53,20 +53,20 @@ class CurrentWeatherFragment : ScopedFragment() , KodeinAware{
         currentWeather.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
             group_loading.visibility = View.GONE
-            updateTemperature(it.temp.toString())
+            updateTemperature(it.temp.toString(), it.tempMin.toString() , it.tempMax.toString())
 
         } )
     }
 
 
 
-//    private fun updateDate(){
-//        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = "Today"
-//    }
 
 
-    private fun updateTemperature(temperature: String){
-        temp.text = temperature
+
+    private fun updateTemperature(temperature: String , minimumTemp: String  , maxTemp:String){
+        temp.text = "$temperature°C"
+        temp_min.text = "Min Temp:"+"$minimumTemp°C"
+        temp_max.text = "Max Temp:"+"$maxTemp°C"
     }
 
 }

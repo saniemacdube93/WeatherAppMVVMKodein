@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/currentWeatherFragment"
         android:name="za.co.krd.macweatherapper.ui.weather.Current.CurrentWeatherFragment"
-        android:label="current_weather_details_fragment"
+        android:label="Current Weather"
         tools:layout="@layout/current_weather_fragment" />
     <fragment
         android:id="@+id/forecastListFragment"
@@ -19,8 +19,5 @@
         android:name="za.co.krd.macweatherapper.ui.weather.Future.Detail.FutureDetailsFragment"
         android:label="forecast_details_fragment"
         tools:layout="@layout/future_details_fragment" />
-    <fragment
-        android:id="@+id/configsFragment"
-        android:name="com.shumbamoneyweather.user_interfaces.weather_configs.ConfigsFragment"
-        android:label="ConfigsFragment" />
+
 </navigation>

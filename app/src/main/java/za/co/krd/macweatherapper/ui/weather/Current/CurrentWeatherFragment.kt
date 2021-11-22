@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.current_weather_fragment.*
@@ -50,12 +51,22 @@ class CurrentWeatherFragment : ScopedFragment() , KodeinAware{
     private  fun bindUI() = launch {
         val currentWeather = viewModel.weather.await()
         currentWeather.observe(viewLifecycleOwner, Observer {
-
             if (it == null) return@Observer
-
-                       textView.text = it.toString()
+            group_loading.visibility = View.GONE
+            updateTemperature(it.temp.toString())
 
         } )
+    }
+
+
+
+//    private fun updateDate(){
+//        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = "Today"
+//    }
+
+
+    private fun updateTemperature(temperature: String){
+        temp.text = temperature
     }
 
 }

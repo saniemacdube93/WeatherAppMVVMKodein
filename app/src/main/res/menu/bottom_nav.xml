@@ -3,13 +3,10 @@
     <item
         android:id="@+id/currentWeatherFragment"
         android:icon="@drawable/ic_today"
-        android:title="Today"/>
+        android:title="Current Weather"/>
     <item
         android:id="@+id/forecastListFragment"
         android:icon="@drawable/ic_calendar_week"
-        android:title="7 Days"/>
-    <item
-        android:id="@+id/forecastDetailsFragment"
-        android:icon="@drawable/ic_settings"
-        android:title="Settings"/>
+        android:title="Forecast Weather"/>
+
 </menu>

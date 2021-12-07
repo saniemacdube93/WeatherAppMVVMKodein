@@ -4,11 +4,13 @@ package za.co.krd.macweatherapper.data.db.entity2
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverter
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
+import com.google.gson.reflect.TypeToken
 
 
 const val CURRENT_WEATHER_ID = 0
-
 @Entity(tableName = "harare_current_weather")
 public data class WeatherForecastResult(
     val cnt: Int,
@@ -20,3 +22,17 @@ public data class WeatherForecastResult(
     @PrimaryKey(autoGenerate = false)
     var id: Int = CURRENT_WEATHER_ID
 }
+
+class MacTypeConveter {
+    @TypeConverter
+    fun listToJson(value: List<MyList>) = Gson().toJson(value)
+
+    @TypeConverter
+    fun jsonToList(value: String) = Gson().fromJson(value , Array<MyList>::class.java).toString()
+    }
+
+
+
+
+
+

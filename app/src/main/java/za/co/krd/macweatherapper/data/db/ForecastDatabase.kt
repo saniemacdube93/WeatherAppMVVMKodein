@@ -5,10 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import za.co.krd.macweatherapper.data.db.daos.CurrentWeatherDao
-import za.co.krd.macweatherapper.data.db.entity.Main
+import za.co.krd.macweatherapper.data.db.entity2.WeatherForecastResult
 
 @Database(
-    entities = [Main::class],
+    entities = [WeatherForecastResult::class],
     version = 1
 )
 abstract class ForecastDatabase : RoomDatabase(){

@@ -9,7 +9,7 @@ data class MetricCurrentWeatherEntry(
         @ColumnInfo(name = "id")
         override val id: Int,
         @ColumnInfo(name = "list")
-        override val list:  List<MyList>
+        override val list:  String
 
 
 ) : UnitSpecificCurrentWeatherEntry

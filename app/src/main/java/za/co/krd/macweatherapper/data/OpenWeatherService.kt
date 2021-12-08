@@ -9,7 +9,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 import za.co.krd.macweatherapper.data.db.entity2.WeatherForecastResult
-import za.co.krd.macweatherapper.data.response.CurrentWeatherResponse
 import za.co.krd.macweatherapper.data.response.FureWeatherResponse
 import za.co.krd.macweatherapper.network.ConnectivityInterceptor
 

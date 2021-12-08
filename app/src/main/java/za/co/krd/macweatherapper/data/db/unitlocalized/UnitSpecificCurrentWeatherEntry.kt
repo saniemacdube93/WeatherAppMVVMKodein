@@ -6,7 +6,7 @@ import za.co.krd.macweatherapper.data.db.entity2.MyList
 interface UnitSpecificCurrentWeatherEntry {
     val cnt: Int
     val id: Int
-    val list:  List<MyList>
+    val list:  String
 
 
 }

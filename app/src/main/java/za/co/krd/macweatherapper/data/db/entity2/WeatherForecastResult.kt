@@ -1,13 +1,9 @@
 package za.co.krd.macweatherapper.data.db.entity2
 
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
-import com.google.gson.Gson
-import com.google.gson.annotations.SerializedName
-import com.google.gson.reflect.TypeToken
 
 
 const val CURRENT_WEATHER_ID = 0
@@ -23,14 +19,61 @@ public data class WeatherForecastResult(
     var id: Int = CURRENT_WEATHER_ID
 }
 
-class MacTypeConveter {
+object BarcodeListConverter {
     @TypeConverter
-    fun listToJson(value: List<MyList>) = Gson().toJson(value)
+    fun toString(barcodeList: List<MyList>?): String? {
+        if (barcodeList == null) return null
 
-    @TypeConverter
-    fun jsonToList(value: String) = Gson().fromJson(value , Array<MyList>::class.java).toString()
+        val stringList = mutableListOf<String>()
+        barcodeList.forEach {
+            stringList.add(it.main.toString())
+
+        }
+
+        return stringList.joinToString(",")
     }
 
+    @TypeConverter
+    fun toBarcodeList(str: String?): List<MyList>? {
+        if (str == null) return null
+
+        val barcodeList = mutableListOf<MyList>()
+
+        val strList = str.split(",")
+        for (i in strList.indices step 2) {
+            barcodeList.add(MyList(strList[i], strList[i + 1].toFloat()))
+        }
+
+        return barcodeList
+    }
+}
+
+
+
+//class MyListTypeConveter {
+//    @TypeConverter
+//    fun listToJson(value: List<MyList>?) = Gson().toJson(value)
+//
+//    fun jsonToList(value: String) = Gson().fromJson(value , Array<MyList>::class.java).toList()
+//    }
+//
+//
+
+
+
+
+
+
+
+
+//
+//class MacTypeConveter {
+//    @TypeConverter
+//    fun listToJson(value: List<MyList>) = Gson().toJson(value)
+//
+//    @TypeConverter
+//    fun jsonToList(value: String) = Gson().fromJson(value , Array<MyList>::class.java).toString()
+//}
 
 
 

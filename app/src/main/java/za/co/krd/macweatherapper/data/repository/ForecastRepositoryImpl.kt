@@ -8,7 +8,7 @@ import kotlinx.coroutines.withContext
 import org.threeten.bp.ZonedDateTime
 import za.co.krd.macweatherapper.data.db.daos.CurrentWeatherDao
 import za.co.krd.macweatherapper.data.db.unitlocalized.UnitSpecificCurrentWeatherEntry
-import za.co.krd.macweatherapper.data.response.CurrentWeatherResponse
+import za.co.krd.macweatherapper.data.enity2.FutureResponse
 import za.co.krd.macweatherapper.network.WeatherNetworkDataSource
 
 class ForecastRepositoryImpl(
@@ -34,11 +34,11 @@ class ForecastRepositoryImpl(
     }
 
     //we want to store all the data we just fetched from the API
-    private fun persistFetchedCurrentWeather(fetchedWeather: CurrentWeatherResponse){
+    private fun persistFetchedCurrentWeather(fetchedWeather: FutureResponse){
         //we will use Dispatchers coroutines
         GlobalScope.launch(Dispatchers.IO) {
             //upsert method insers or updates the CurrentWeatherResponse
-            currentWeatherDao.upsert(fetchedWeather.main)
+            currentWeatherDao.upsert(fetchedWeather)
         }
     }
 

@@ -4,13 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import za.co.krd.macweatherapper.data.db.daos.CurrentWeatherDao
 import za.co.krd.macweatherapper.data.db.entity.Main
+import za.co.krd.macweatherapper.data.enity2.FutureResponse
+import za.co.krd.macweatherapper.data.enity2.HobbiesTypeConveter
 
 @Database(
-    entities = [Main::class],
+    entities = [FutureResponse::class],
     version = 1
 )
+@TypeConverters(HobbiesTypeConveter::class)
 abstract class ForecastDatabase : RoomDatabase(){
     abstract fun currentWeatherDao(): CurrentWeatherDao
 

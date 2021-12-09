@@ -8,19 +8,18 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
-import za.co.krd.macweatherapper.data.response.CurrentWeatherResponse
+import za.co.krd.macweatherapper.data.enity2.FutureResponse
 import za.co.krd.macweatherapper.network.ConnectivityInterceptor
 
 
 const val API_KEY = "034da672af3e87a27b2bfb04a03baaa1"
 //https://api.openweathermap.org/data/2.5/weather?appid=034da672af3e87a27b2bfb04a03baaa1&q=harare
-
+//https://api.openweathermap.org/data/2.5/forecast?q=harare&appid=034da672af3e87a27b2bfb04a03baaa1
 interface OpenWeatherService {
-    @GET("weather")
+    @GET("forecast")
     fun  getCurrentWeather (
         @Query("q") city: String,
-        @Query("units") unit: String,
-    ): Deferred<CurrentWeatherResponse>
+    ): Deferred<FutureResponse>
 
 
     companion object {
@@ -46,7 +45,7 @@ interface OpenWeatherService {
             }
             val okHttpClient = OkHttpClient.Builder()
                 .addInterceptor(requestInterceptor)
-               .addInterceptor(networkConnectionInterceptor)
+                .addInterceptor(networkConnectionInterceptor)
                 .build()
 
             return Retrofit.Builder()

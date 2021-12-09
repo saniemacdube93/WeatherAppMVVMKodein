@@ -53,7 +53,8 @@ class CurrentWeatherFragment : ScopedFragment() , KodeinAware{
         currentWeather.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
             group_loading.visibility = View.GONE
-            updateTemperature(it.temp.toString(), it.tempMin.toString() , it.tempMax.toString())
+         //   updateTemperature(it.temp.toString(), it.tempMin.toString() , it.tempMax.toString())
+            updateTemperature(it.list.get(0).dtTxt, it.list.get(0).dtTxt, it.list.get(0).dtTxt,)
 
         } )
     }

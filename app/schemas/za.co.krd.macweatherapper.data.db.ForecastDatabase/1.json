@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "ec1bd6defa33491fdc88f79759bac516",
+    "identityHash": "8c3bc73f0077ac22e4d94cbee515bee7",
     "entities": [
       {
         "tableName": "harare_current_weather",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `temp` REAL NOT NULL, `feelsLike` REAL NOT NULL, `tempMin` REAL NOT NULL, `tempMax` REAL NOT NULL, `pressure` INTEGER NOT NULL, `humidity` INTEGER NOT NULL, `seaLevel` INTEGER NOT NULL, `grndLevel` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `cod` TEXT NOT NULL, `message` INTEGER NOT NULL, `cnt` INTEGER NOT NULL, `list` TEXT NOT NULL, `name` TEXT NOT NULL, `country` TEXT NOT NULL, `population` INTEGER NOT NULL, `timezone` INTEGER NOT NULL, `sunrise` INTEGER NOT NULL, `sunset` INTEGER NOT NULL, `lat` REAL NOT NULL, `lon` REAL NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -15,51 +15,75 @@
             "notNull": true
           },
           {
-            "fieldPath": "temp",
-            "columnName": "temp",
-            "affinity": "REAL",
+            "fieldPath": "cod",
+            "columnName": "cod",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "feelsLike",
-            "columnName": "feelsLike",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "tempMin",
-            "columnName": "tempMin",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "tempMax",
-            "columnName": "tempMax",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "pressure",
-            "columnName": "pressure",
+            "fieldPath": "message",
+            "columnName": "message",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "humidity",
-            "columnName": "humidity",
+            "fieldPath": "cnt",
+            "columnName": "cnt",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "seaLevel",
-            "columnName": "seaLevel",
+            "fieldPath": "list",
+            "columnName": "list",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city.name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city.country",
+            "columnName": "country",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city.population",
+            "columnName": "population",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "grndLevel",
-            "columnName": "grndLevel",
+            "fieldPath": "city.timezone",
+            "columnName": "timezone",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city.sunrise",
+            "columnName": "sunrise",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city.sunset",
+            "columnName": "sunset",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city.coord.lat",
+            "columnName": "lat",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city.coord.lon",
+            "columnName": "lon",
+            "affinity": "REAL",
             "notNull": true
           }
         ],
@@ -76,7 +100,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ec1bd6defa33491fdc88f79759bac516')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8c3bc73f0077ac22e4d94cbee515bee7')"
     ]
   }
 }

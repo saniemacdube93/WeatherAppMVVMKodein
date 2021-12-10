@@ -28,13 +28,13 @@ import za.co.krd.macweatherapper.ui.base.ScopedFragment
 class CurrentWeatherFragment : ScopedFragment() , KodeinAware{
     //we are using Kodein for our dependency injection
     override val kodein by closestKodein()
-   private val viewModelFactory:CurrentWeatherViewModelFactory by instance()
+    private val viewModelFactory:CurrentWeatherViewModelFactory by instance()
 
     private lateinit var viewModel: CurrentWeatherViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.current_weather_fragment, container, false)
     }
@@ -49,12 +49,12 @@ class CurrentWeatherFragment : ScopedFragment() , KodeinAware{
 
     //this is a function for binding the UI
     private  fun bindUI() = launch {
-        val currentWeather = viewModel.weather.await()
+        val currentWeather = viewModel.weatherMac.await()
         currentWeather.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
             group_loading.visibility = View.GONE
-         //   updateTemperature(it.temp.toString(), it.tempMin.toString() , it.tempMax.toString())
-            updateTemperature(it.list.get(0).dtTxt, it.list.get(0).dtTxt, it.list.get(0).dtTxt,)
+            //   updateTemperature(it.temp.toString(), it.tempMin.toString() , it.tempMax.toString())
+            updateTemperature(it.list.get(0).main.temp.toString(), it.list.get(0).main.temp.toString(), it.list.get(0).main.temp.toString())
 
         } )
     }

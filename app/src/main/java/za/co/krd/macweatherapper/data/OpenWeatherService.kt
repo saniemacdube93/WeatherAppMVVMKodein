@@ -19,6 +19,7 @@ interface OpenWeatherService {
     @GET("forecast")
     fun  getCurrentWeather (
         @Query("q") city: String,
+        @Query("units") metric: String
     ): Deferred<FutureResponse>
 
 

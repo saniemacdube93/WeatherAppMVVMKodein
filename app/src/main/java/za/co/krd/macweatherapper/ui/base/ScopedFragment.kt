@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import za.co.krd.macweatherapper.data.enity2.MyList
 import kotlin.coroutines.CoroutineContext
 
 abstract class ScopedFragment : Fragment() , CoroutineScope {
@@ -24,4 +25,6 @@ abstract class ScopedFragment : Fragment() , CoroutineScope {
         super.onDestroy()
         job.cancel()
     }
+
+
 }

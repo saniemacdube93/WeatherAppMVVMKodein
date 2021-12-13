@@ -53,77 +53,17 @@ class CurrentWeatherFragment : ScopedFragment() , KodeinAware{
 //                    R.drawable.humidity, R.drawable.pressure , R.drawable.sunset ,R.drawable.sunset, R.drawable.pressure, R.drawable.pressure, R.drawable.pressure
 //            )
 
-            val  name = arrayOf(
-                    "Busisani" ,
-            "Mac",
-            "Dube",
-            "Ola",
-            "Bambo",
-            "Ola",
-            "Seven"
-
-            )
 
 
 
-            val  latestTime = arrayOf(
-                    "Busisani" ,
-                    "Mac",
-                    "Dube",
-                    "Ola",
-                    "Bambo",
-                    "Ola",
-                    "Seven"
-            )
 
 
-            val  latestMessage = arrayOf(
-                    "Busisani" ,
-                    "Mac",
-                    "Dube",
-                    "Ola",
-                    "Bambo",
-                    "Ola",
-                    "Seven"
-            )
-
-            val  lastMessage = arrayOf(
-                    "Busisani" ,
-                    "Mac",
-                    "Dube",
-                    "Ola",
-                    "Bambo",
-                    "Ola",
-                    "Seven"
-            )
-
-
-            val  phoneNo = arrayOf(
-                    "Busisani" ,
-                    "Mac",
-                    "Dube",
-                    "Ola",
-                    "Bambo",
-                    "Ola",
-                    "Seven"
-            )
-
-
-            val  country = arrayOf(
-                    "Busisani" ,
-                    "Mac",
-                    "Dube",
-                    "Ola",
-                    "Bambo",
-                    "Ola",
-                    "Seven"
-            )
 
 
             userArrayList = ArrayList()
 
-            for (i in name.indices ){
-                val user = User(it.list.get(i).main.temp.toString(),latestMessage[i],phoneNo[i],country[i],latestTime[i])
+            for (i in it.list.indices ){
+                val user = User(it.list.get(i).main.temp.toString(),it.list.get(i).dtTxt,it.list.get(i).main.temp.toString(),it.list.get(i).main.temp.toString(),it.list.get(i).main.temp.toString())
                 userArrayList.add(user)
             }
 

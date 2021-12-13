@@ -6,8 +6,8 @@ import com.google.gson.annotations.SerializedName
 
 data class MyList(
 //    val dt: Int,
-//    @Embedded
-//    val main: Main,
+   @Embedded
+    val main: Main,
 //    //val weather: List<Weather>,
 //    @Embedded
 //    val clouds: Clouds,

@@ -5,7 +5,10 @@ import androidx.room.*
 import com.bumptech.glide.load.model.ByteArrayLoader
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
-
+import com.squareup.moshi.JsonAdapter
+import java.lang.reflect.ParameterizedType
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.Types
 const val CURRENT_WEATHER_ID = 0
 @Entity(tableName = "harare_current_weather")
 data class FutureResponse(
@@ -14,7 +17,7 @@ data class FutureResponse(
         val cod: String,
         val message: Int,
         val cnt: Int,
-        @TypeConverters(HobbiesTypeConveter::class)
+        @TypeConverters(DataConverter::class)
         val list: List<MyList>,
    //  val list: List<MyList>,
         @Embedded
@@ -22,31 +25,21 @@ data class FutureResponse(
 )
 
 
-class HobbiesTypeConveter {
+//we will use Moshi as our Data converter
+class DataConverter {
+    private val moshi = Moshi.Builder().build()
+    private val listMyData : ParameterizedType = Types.newParameterizedType(List::class.java, MyList::class.java)
+    private val jsonAdapter: JsonAdapter<List<MyList>> = moshi.adapter(listMyData)
+
     @TypeConverter
-    fun toString(barcodeList: List<MyList>?): String? {
-        if (barcodeList == null) return null
-
-        val stringList = mutableListOf<String>()
-        barcodeList.forEach {
-            stringList.add(it.dtTxt)
-
-        }
-
-        return stringList.joinToString(",")
+    fun listMyModelToJsonStr(listMyModel: List<MyList>?): String? {
+        return jsonAdapter.toJson(listMyModel)
     }
 
     @TypeConverter
-    fun toBarcodeList(str: String?): List<MyList>? {
-        if (str == null) return null
-
-        val barcodeList = mutableListOf<MyList>()
-
-        val strList = str.split(",")
-        for (i in strList.indices step 2) {
-            barcodeList.add(MyList(strList[i]))
-        }
-
-        return barcodeList
+    fun jsonStrToListMyModel(jsonStr: String?): List<MyList>? {
+        return jsonStr?.let { jsonAdapter.fromJson(jsonStr) }
     }
 }
+
+

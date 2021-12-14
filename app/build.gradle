@@ -99,6 +99,8 @@ dependencies {
     implementation 'com.squareup.moshi:moshi:1.8.0'
     kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.8.0'
     // Preference
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
     implementation "androidx.preference:preference:1.0.0"
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     implementation 'com.google.android.gms:play-services-location:18.0.0'

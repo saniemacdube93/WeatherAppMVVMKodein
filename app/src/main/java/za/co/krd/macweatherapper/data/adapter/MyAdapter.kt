@@ -24,7 +24,7 @@ R.layout.list_item , arrayList) {
         val view : View = inflater.inflate(R.layout.list_item, null )
 
 
-        val imageView : ImageView= view.findViewById(R.id.profile_pic)
+        //val imageView : ImageView= view.findViewById(R.id.profile_pic)
         val userName : TextView = view.findViewById(R.id.personName)
         val lastMsg : TextView = view.findViewById(R.id.lastMessage)
         val lastMsgTime : TextView = view.findViewById(R.id.msgTime)

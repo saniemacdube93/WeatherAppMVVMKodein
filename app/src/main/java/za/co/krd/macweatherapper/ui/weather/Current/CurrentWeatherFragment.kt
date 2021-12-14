@@ -1,27 +1,35 @@
 package za.co.krd.macweatherapper.ui.weather.Current
 
-import android.app.Activity
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.current_weather_fragment.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 import za.co.krd.macweatherapper.R
-import za.co.krd.macweatherapper.data.adapter.MyAdapter
-import za.co.krd.macweatherapper.data.enity2.User
+import za.co.krd.macweatherapper.data.OpenWeatherService
+import za.co.krd.macweatherapper.network.ConnectivityInterceptor
+import za.co.krd.macweatherapper.network.ConnectivityInterceptorImpl
+import za.co.krd.macweatherapper.network.WeatherNetworkDataSource
+import za.co.krd.macweatherapper.network.WeatherNetworkDataSourceImpl
 import za.co.krd.macweatherapper.ui.base.ScopedFragment
 
 class CurrentWeatherFragment : ScopedFragment() , KodeinAware{
     //we are using Kodein for our dependency injection
     override val kodein by closestKodein()
-   private val viewModelFactory:CurrentWeatherViewModelFactory by instance()
-    private lateinit var userArrayList: ArrayList<User>
+    private val viewModelFactory:CurrentWeatherViewModelFactory by instance()
+
     private lateinit var viewModel: CurrentWeatherViewModel
 
     override fun onCreateView(
@@ -45,31 +53,7 @@ class CurrentWeatherFragment : ScopedFragment() , KodeinAware{
         currentWeather.observe(viewLifecycleOwner, Observer {
             if (it == null) return@Observer
             group_loading.visibility = View.GONE
-
-         //   updateTemperature(it.temp.toString(), it.tempMin.toString() , it.tempMax.toString())
-          //  updateTemperature(it.list.get(0).dtTxt, it.list.get(0).dtTxt, it.list.get(0).dtTxt,)
-
-//            val imageId = intArrayOf(
-//                    R.drawable.humidity, R.drawable.pressure , R.drawable.sunset ,R.drawable.sunset, R.drawable.pressure, R.drawable.pressure, R.drawable.pressure
-//            )
-
-
-
-
-
-
-
-
-            userArrayList = ArrayList()
-
-            for (i in it.list.indices ){
-                val user = User(it.list.get(i).main.temp.toString(),it.list.get(i).dtTxt,it.list.get(i).main.temp.toString(),it.list.get(i).main.temp.toString(),it.list.get(i).main.temp.toString())
-                userArrayList.add(user)
-            }
-
-
-
-            listView.adapter = MyAdapter(parentFragment?.context as Activity,userArrayList)
+            updateTemperature(it.list.get(0).main.temp.toString(), it.list.get(0).main.tempMin.toString(), it.list.get(0).main.tempMax.toString())
 
 
         } )
@@ -80,10 +64,10 @@ class CurrentWeatherFragment : ScopedFragment() , KodeinAware{
 
 
 
-//    private fun updateTemperature(temperature: String , minimumTemp: String  , maxTemp:String){
-//        temp.text = "$temperature°C"
-//        temp_min.text = "Min Temp:"+"$minimumTemp°C"
-//        temp_max.text = "Max Temp:"+"$maxTemp°C"
-//    }
+    private fun updateTemperature(temperature: String , minimumTemp: String  , maxTemp:String){
+        temp.text = "$temperature°C"
+        temp_min.text = "Min Temp:"+"$minimumTemp°C"
+        temp_max.text = "Max Temp:"+"$maxTemp°C"
+    }
 
 }

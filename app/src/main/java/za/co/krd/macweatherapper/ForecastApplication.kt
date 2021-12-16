@@ -24,7 +24,6 @@ class ForecastApplication : Application() , KodeinAware {
     override val  kodein = Kodein.lazy {
         //androidXModule provides us with instances of context without having to write much code
         import(androidXModule(this@ForecastApplication ))
-        //we are binding our forecast database
         bind() from singleton{ ForecastDatabase.invoke(instance()) }
         bind() from singleton { instance<ForecastDatabase>().currentWeatherDao() }
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance())}

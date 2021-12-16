@@ -13,8 +13,6 @@ import za.co.krd.macweatherapper.network.ConnectivityInterceptor
 
 
 const val API_KEY = "034da672af3e87a27b2bfb04a03baaa1"
-//https://api.openweathermap.org/data/2.5/weather?appid=034da672af3e87a27b2bfb04a03baaa1&q=harare
-//https://api.openweathermap.org/data/2.5/forecast?q=harare&appid=034da672af3e87a27b2bfb04a03baaa1
 interface OpenWeatherService {
     @GET("forecast")
     fun  getCurrentWeather (

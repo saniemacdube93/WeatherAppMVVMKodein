@@ -1,10 +1,7 @@
 package za.co.krd.macweatherapper.ui.weather.Future.List
 
 import android.app.Activity
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +11,14 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.current_weather_fragment.*
 import kotlinx.android.synthetic.main.current_weather_fragment.group_loading
 import kotlinx.android.synthetic.main.fure_list_weather_fragment.*
+import kotlinx.android.synthetic.main.future_details_fragment.*
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
-import za.co.krd.macweatherapper.Dispatcher
 import za.co.krd.macweatherapper.MainActivity
 import za.co.krd.macweatherapper.R
 import za.co.krd.macweatherapper.data.adapter.MyAdapter
-import za.co.krd.macweatherapper.data.db.unitlocalized.Communicator
 import za.co.krd.macweatherapper.data.enity2.User
 import za.co.krd.macweatherapper.ui.base.ScopedFragment
 import za.co.krd.macweatherapper.ui.weather.Current.CurrentWeatherViewModel
@@ -76,14 +72,17 @@ class FureListWeather : ScopedFragment(),KodeinAware {
             listView.isClickable = true
             listView.adapter = MyAdapter(parentFragment?.context as Activity,userArrayList)
             listView.setOnItemClickListener{parent , view , position , id ->
-                val temperature = it.list.get(position).main.temp
+               // val temperature =
                 val humidity = it.list.get(position).main.humidity
                 val pressure = it.list.get(position).main.pressure
 
 
                 //we will use our nav controller to open up the details fragment
                  findNavController().navigate(R.id.forecastDetailsFragment , Bundle().apply {
-                    putString("temperature" , temperature.toString())
+                    putDouble("temperature" , it.list[position].main.temp)
+                     putString("humidity" , it.list.get(position).main.humidity.toString())
+                     putString("pressure" , it.list.get(position).main.pressure.toString())
+
                  })
 
             }

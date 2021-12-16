@@ -26,24 +26,16 @@ class ForecastApplication : Application() , KodeinAware {
         import(androidXModule(this@ForecastApplication ))
         //we are binding our forecast database
         bind() from singleton{ ForecastDatabase.invoke(instance()) }
-        //binding the DAO
         bind() from singleton { instance<ForecastDatabase>().currentWeatherDao() }
-        //binding the network connection interceptor interface with a singleton
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance())}
-        //binding the Open Weather service
         bind() from singleton { OpenWeatherService(instance()) }
-        //binding the Network DataSource
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
-        //binding the forecast repository
         bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(),instance()) }
-        //binding the view model factory
         bind() from provider { CurrentWeatherViewModelFactory(instance()) }
     }
-
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
-
     }
 
 
